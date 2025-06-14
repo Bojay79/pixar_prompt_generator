@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pixar 3D Action Figure Prompt Generator + Photo Upload</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f8;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    textarea {
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h2>🎬 Pixar 3D Action Figure Prompt Generator + Upload Foto</h2>
+  <form id="pixarForm">
+    <label for="photo">Upload Foto Referensi (JPG/PNG)</label>
+    <input type="file" id="photo" accept="image/*">
+
+    <label for="expression">Ekspresi Wajah</label>
+    <input type="text" id="expression" placeholder="Contoh: cheerful smile">
+
+    <label for="hairStyle">Gaya Rambut</label>
+    <input type="text" id="hairStyle" placeholder="Contoh: short wavy black hair">
+
+    <label for="skinColor">Warna Kulit</label>
+    <input type="text" id="skinColor" placeholder="Contoh: tan skin tone">
+
+    <label for="faceShape">Bentuk Wajah</label>
+    <input type="text" id="faceShape" placeholder="Contoh: round face">
+
+    <label for="top">Atasan</label>
+    <input type="text" id="top" placeholder="Contoh: red flannel shirt">
+
+    <label for="bottom">Bawahan</label>
+    <input type="text" id="bottom" placeholder="Contoh: olive cargo pants">
+
+    <label for="shoes">Sepatu</label>
+    <input type="text" id="shoes" placeholder="Contoh: brown hiking boots">
+
+    <label for="accessory">Aksesori</label>
+    <input type="text" id="accessory" placeholder="Contoh: small backpack">
+
+    <label for="pose">Pose / Aksi</label>
+    <input type="text" id="pose" placeholder="Contoh: standing on a cliff edge with wind blowing">
+
+    <label for="background">Latar Tempat</label>
+    <input type="text" id="background" placeholder="Contoh: scenic mountain during sunrise">
+
+    <label for="rendering">Gaya Rendering</label>
+    <input type="text" id="rendering" placeholder="Contoh: Pixar-quality HD with soft lighting">
+
+    <button type="button" onclick="generatePrompt()">Generate Prompt</button>
+  </form>
+
+  <h3>📋 Prompt Output:</h3>
+  <textarea id="result" rows="10" readonly></textarea>
+
+  <script>
+    function generatePrompt() {
+      const expr = document.getElementById("expression").value;
+      const hair = document.getElementById("hairStyle").value;
+      const skin = document.getElementById("skinColor").value;
+      const face = document.getElementById("faceShape").value;
+      const top = document.getElementById("top").value;
+      const bottom = document.getElementById("bottom").value;
+      const shoes = document.getElementById("shoes").value;
+      const acc = document.getElementById("accessory").value;
+      const pose = document.getElementById("pose").value;
+      const bg = document.getElementById("background").value;
+      const render = document.getElementById("rendering").value;
+      const photo = document.getElementById("photo").files[0];
+
+      let photoInfo = "";
+      if (photo) {
+        photoInfo = `Use the uploaded photo (${photo.name}) as reference for the character's appearance. `;
+      }
+
+      const prompt = `${photoInfo}Create a 3D Pixar-style action figure. The character has a ${expr}, ${hair}, ${skin}, and a ${face}. ` +
+        `They wear a ${top}, ${bottom}, and ${shoes}. Accessories include ${acc}. The figure is ${pose}, ` +
+        `with a background of ${bg}. Render in ${render}.`;
+
+      document.getElementById("result").value = prompt;
+    }
+  </script>
+</body>
+</html>
